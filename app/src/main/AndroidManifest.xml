@@ -28,6 +28,7 @@
         <activity
             android:name=".ReminderActivity"
             />
+        <!--this is a comment-->
     </application>
 
 </manifest>

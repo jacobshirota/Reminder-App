@@ -33,7 +33,7 @@ public class ReminderActivity extends AppCompatActivity {
                 desc = findViewById(R.id.description_view);
 
 
-        title.setText(getIntent().getStringExtra("TITLE"));
+        //title.setText(getIntent().getStringExtra("TITLE"));
 
 
         final ImageButton exit_button = findViewById(R.id.exit_button); //FINISH AL OF THESE CLICK LISTENERS LATER

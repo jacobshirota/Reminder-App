@@ -8,19 +8,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 class ReminderViewHolder extends RecyclerView.ViewHolder {
 
-    private final TextView reminderTitleView,
-                            reminderDateView;
+    public final TextView reminderTitleView,
+                            reminderDateView,
+                            reminderTimeView,
+                            reminderDesc;
 
     private ReminderViewHolder(View itemView) {
         super(itemView);
         reminderTitleView = itemView.findViewById(R.id.recycler_title);
         reminderDateView = itemView.findViewById(R.id.recycler_date);
+        reminderTimeView = itemView.findViewById(R.id.recycler_time);
+        reminderDesc = itemView.findViewById(R.id.recycler_desc);
     }
 
-    public void bind(String title, String date) {
+    public void bind(String title, String date, String time, String desc) {
+        reminderDesc.setText(desc);
         reminderTitleView.setText(title);
-        //reminderTitleView.setTextSize(28);
         reminderDateView.setText(date);
+        reminderTimeView.setText(time);
     }
 
     static ReminderViewHolder create(ViewGroup parent) {

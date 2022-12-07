@@ -3,45 +3,46 @@ package com.example.reminder_app;
 import android.app.Application;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class ReminderViewModel extends AndroidViewModel {
 
-    private ReminderDao mReminderDao;
-    private final LiveData<List<ReminderTable>> mAllReminders;
+    private ArrayList<String[]> ReminderTable;
 
-    LiveData<List<ReminderTable>> getAllReminders() {
 
-        mAll
-        mSectionLive[0].addSource(mAllReminders, new Observer<List<ReminderTable>>() {
-            @Override
-            public void onChanged(@Nullable List<ReminderTable> sectionList) {
-                if(sectionList == null || sectionList.isEmpty()) {
-                    // Fetch data from API
-                    mSectionLive[0] = mReminderDao.getAll();
-                }else{
-                    mSectionLive[0].removeSource(mAllReminders);
-                    mSectionLive[0].setValue(sectionList);
-                }
-            }
-        });
-        return mSectionLive[0];
-        //return mAllReminders;
+    public ArrayList<String[]> getAll() {
+        return ReminderTable;
     }
-    //public void deleteAll() {mReminderDao.deleteAll();}
-    public void insert(ReminderTable reminder) {mReminderDao.insert(reminder);}
+
+    public void delete(String[] reminder) {
+        ReminderTable.remove(reminder);
+    }
+    public void insert(String[] reminder) {
+        ReminderTable.add(0, reminder);
+    }
+
+    public ArrayList<String[]> getDemo() {
+        ArrayList<String[]> f = new ArrayList<String[]>();
+        f.add(new String[]{"Demo reminder 2", "12/7/22", "2:5", "Demo description 2"});
+        return f;
+    }
 
 
     public ReminderViewModel (Application application) {
         super(application);
-        mReminderDao = ReminderRoomDatabase.getDatabase(application).reminderDao();
-        mAllReminders = mReminderDao.getAll();
+        ReminderTable = new ArrayList<String[]>();
+        ReminderTable.add(new String[]{"Demo reminder 1", "12/1/22", "10:44", "Demo description"});
+
     }
 
 }

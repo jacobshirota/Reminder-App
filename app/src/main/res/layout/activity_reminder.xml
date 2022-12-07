@@ -53,8 +53,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/buttonLayout"
-        android:layout_margin="5dp"
-        android:text="TITLESTRING"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Demo title"
         android:textAlignment="textStart"
         android:textColor="@color/black"
         android:textSize="34sp"
@@ -68,8 +71,8 @@
         android:layout_below="@id/title_view"
         android:layout_alignParentStart="true"
         android:layout_marginStart="5dp"
-        android:text="DATESTRING"
-        android:textSize="20sp"
+        android:text="12/7/22"
+        android:textSize="16sp"
         tools:layout_editor_absoluteX="6dp"
         tools:layout_editor_absoluteY="58dp" />
 
@@ -88,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/title_view"
         android:layout_toEndOf="@id/filler_view"
-        android:text="TIMESTRING"
+        android:text="2:5"
         android:textSize="20sp" />
 
     <TextView

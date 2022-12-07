@@ -7,15 +7,15 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class ReminderListAdapter extends ListAdapter<ReminderTable, ReminderViewHolder> {
+public class ReminderListAdapter extends RecyclerView.Adapter<ReminderViewHolder>{
 
-    public LiveData<List<ReminderTable>> reminders;
+    public ArrayList<String[]> reminders;
 
-    public ReminderListAdapter(@NonNull DiffUtil.ItemCallback<ReminderTable> diffCallback, LiveData<List<ReminderTable>> remindersList) {
-        super(diffCallback);
+    public ReminderListAdapter(ArrayList<String[]> remindersList) {
         reminders = remindersList;
     }
 
@@ -27,30 +27,14 @@ public class ReminderListAdapter extends ListAdapter<ReminderTable, ReminderView
 
     @Override
     public void onBindViewHolder(ReminderViewHolder holder, int position) {
-        ReminderTable current = reminders.getValue().get(position);
-        holder.bind(current.title, current.date);
+        String[] current = reminders.get(position);
+        holder.bind(current[0], current[1], current[2], current[3]);
     }
 
     @Override
     public int getItemCount() {
-        if (reminders.getValue() != null) {
-            return reminders.getValue().size();
-        }
-        return 0;
+        return reminders.size();
     }
 
 
-
-    static class ItemsDiff extends DiffUtil.ItemCallback<ReminderTable> {
-
-        @Override
-        public boolean areItemsTheSame(@NonNull ReminderTable oldItem, @NonNull ReminderTable newItem) {
-            return oldItem == newItem;
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull ReminderTable oldItem, @NonNull ReminderTable newItem) {
-            return oldItem.title.equals(newItem.title);
-        }
-    }
 }

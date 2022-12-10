@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="FAB_content_description">Circular button with a plus symbol in the center</string>
+    <string name="exit_button_content_description">"X" shape</string>
+    <string name="edit_button_content_description">Outline of a pencil</string>
+    <string name="delete_button_content_description">Outline of a trash can</string>
+
+</resources>

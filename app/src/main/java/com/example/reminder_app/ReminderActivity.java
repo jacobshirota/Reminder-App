@@ -13,13 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
-import java.util.List;
+import java.util.ArrayList;
 
 
 public class ReminderActivity extends AppCompatActivity {
 
     private ReminderViewModel mReminderViewModel;
-    private LiveData<List<ReminderTable>> list;
+    private LiveData<ArrayList<ReminderTable>> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +28,7 @@ public class ReminderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reminder);
 
         mReminderViewModel = new ViewModelProvider(this).get(ReminderViewModel.class);
-        Toast.makeText(this, mReminderViewModel.getAllReminders() != null?"rargdata":"rargnull", Toast.LENGTH_LONG).show();
         list = mReminderViewModel.getAllReminders();
-
-        ReminderTable current = list.getValue().get(0);
 
 
         TextView title = findViewById(R.id.title_view),
@@ -39,14 +36,9 @@ public class ReminderActivity extends AppCompatActivity {
                 time = findViewById(R.id.time_view),
                 desc = findViewById(R.id.description_view);
 
-        Toast.makeText(this, list.getValue()==null?"losnull":"losdata", Toast.LENGTH_LONG).show();
-        //title.setText(list.getValue().get(0).title);
-
 
         final ImageButton exit_button = findViewById(R.id.exit_button); //FINISH AL OF THESE CLICK LISTENERS LATER
         exit_button.setOnClickListener(v -> {
-            Intent intent = new Intent(ReminderActivity.this, MainActivity.class);
-            startActivity(intent);
             finish();
         });
         final ImageButton edit_button = findViewById(R.id.edit_button);

@@ -7,15 +7,16 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class ReminderListAdapter extends ListAdapter<ReminderTable, ReminderViewHolder> {
+public class ReminderListAdapter extends RecyclerView.Adapter<ReminderViewHolder> {
 
-    public LiveData<List<ReminderTable>> reminders;
+    public LiveData<ArrayList<ReminderTable>> reminders;
 
-    public ReminderListAdapter(@NonNull DiffUtil.ItemCallback<ReminderTable> diffCallback, LiveData<List<ReminderTable>> remindersList) {
-        super(diffCallback);
+    public ReminderListAdapter(@NonNull DiffUtil.ItemCallback<ReminderTable> diffCallback, LiveData<ArrayList<ReminderTable>> remindersList) {
+        //super(diffCallback);
         reminders = remindersList;
     }
 
@@ -39,6 +40,9 @@ public class ReminderListAdapter extends ListAdapter<ReminderTable, ReminderView
         return 0;
     }
 
+    public ReminderTable getItem(int pos) {
+        return reminders.getValue().get(pos);
+    }
 
 
     static class ItemsDiff extends DiffUtil.ItemCallback<ReminderTable> {

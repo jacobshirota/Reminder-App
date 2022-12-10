@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     private ReminderViewModel mReminderViewModel;
 
-    public static String currentTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, 1);
         });
 
+        recyclerView.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ReminderActivity.class);
+            startActivity(intent);
+        });
+
     }
 
 
@@ -76,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
             reminder.description = data.getStringExtra(AddActivity.EXTRA_DESC);
 
             mReminderViewModel.insert(reminder);
-            findViewById(R.id.recyclerview).draw(new Canvas());
+            RecyclerView r = findViewById(R.id.recyclerview);
+            r.getAdapter().notifyDataSetChanged();
 
         } else {
             Toast.makeText(
@@ -89,9 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToReminderActivity(View v) {
 
-
-
         Intent i = new Intent(MainActivity.this, ReminderActivity.class);
+        i.putExtra("L", new String[]{"F"});
         startActivity(i);
     }
 
